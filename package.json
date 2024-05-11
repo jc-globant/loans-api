@@ -9,7 +9,7 @@
     "dev": "node --watch src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "lint": "next lint",
+    "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "npx prettier --write . "
   },
@@ -21,10 +21,13 @@
     "express": "4.19.2"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.24.5",
+    "@eslint/js": "^9.2.0",
     "@flydotio/dockerfile": "latest",
+    "eslint": "^9.2.0",
+    "globals": "^15.2.0",
     "husky": "8.0.3",
     "lint-staged": "15.2.2",
-    "eslint": "9.2.0",
     "prettier": "3.2.5"
   }
 }

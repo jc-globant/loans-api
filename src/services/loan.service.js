@@ -1,3 +1,4 @@
+import { Loan } from '../models/index.js';
 import { db } from '../db/index.js';
 
 export const getLoanById = ({ id }) => {
@@ -33,6 +34,29 @@ export const getLoanById = ({ id }) => {
   }
 };
 
+export const getLoanDetails = async ({ id }) => {
+  console.log(id);
+  try {
+    // Utiliza los modelos y las relaciones para obtener los detalles del préstamo
+    const loanDetails = await Loan.findOne({
+      where: { id },
+      // include: [
+      //   { model: Client, attributes: ['name'] }, // Incluye el nombre del cliente
+      //   { model: Payment, attributes: ['paymentDate', 'amountPaid', 'status'] } // Incluye los detalles de pago (si existen)
+      // ],
+      // attributes: [
+      //   'id', 'clientId', 'loanAmount', 'monthlyPayments', 'referral'
+      // ] // Atributos del préstamo
+    });
+
+    return loanDetails;
+  } catch (error) {
+    console.error('Error al obtener los detalles del préstamo:', error);
+    throw error;
+  }
+};
+
 export default {
   getLoanById,
+  getLoanDetails,
 };

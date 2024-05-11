@@ -6,7 +6,7 @@ export const db = new Database('./src/db/loans.db');
 export const sequelize = new Sequelize({ dialect: 'sqlite', storage: './src/db/loans.db' });
 
 sequelize
-  .sync()
+  .sync({ force: true })
   .then(() => {
     console.log('Tables synchronized successfully');
   })

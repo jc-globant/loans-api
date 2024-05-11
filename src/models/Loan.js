@@ -1,13 +1,27 @@
 import { DataTypes } from 'sequelize';
 
-export default function initExampleModel(sequelize) {
-  const ExampleModel = sequelize.define('Prestamo', {
+export default function initLoanModel(sequelize) {
+  const Loan = sequelize.define('Loan', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TEXT,
       primaryKey: true,
-      autoIncrement: true,
+    },
+    loanAmount: {
+      type: DataTypes.REAL,
+      allowNull: false,
+    },
+    monthlyPayments: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    referral: {
+      type: DataTypes.TEXT,
     },
   });
 
-  return ExampleModel;
+  Loan.associate = models => {
+    Loan.belongsTo(models.Client, { foreignKey: 'clientId' });
+  };
+
+  return Loan;
 }

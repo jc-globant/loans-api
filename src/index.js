@@ -2,7 +2,7 @@ import express from 'express'
 import { db } from './db/index.js'
 
 const app = express()
-const port = 3000
+const port = 3000 || process.env.PORT
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

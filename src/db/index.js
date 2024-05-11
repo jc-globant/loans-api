@@ -8,8 +8,8 @@ export const sequelize = new Sequelize({ dialect: 'sqlite', storage: './src/db/l
 sequelize
   .sync()
   .then(() => {
-    console.log('Tablas sincronizadas con éxito');
+    console.log('Tables synchronized successfully');
   })
   .catch(error => {
-    console.error('Error al sincronizar las tablas:', error);
+    console.error('Error synchronizing tables:', error);
   });

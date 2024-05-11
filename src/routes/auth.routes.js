@@ -3,4 +3,4 @@ import { authController } from '../controllers/auth.controller.js';
 
 export const authRouter = Router();
 
-authRouter.get('/auth/login', authController.getExample);
+authRouter.get('/auth/login', authController.login);

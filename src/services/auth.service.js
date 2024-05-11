@@ -1,6 +1,6 @@
 export const login = () => {
   console.timeLog('asda');
-  return 'hellos';
+  return 'auth service';
 };
 
 export default {

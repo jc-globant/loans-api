@@ -1,7 +1,6 @@
 import { db } from '../db/index.js';
 
 export const getLoanById = ({ id }) => {
-  console.log(id);
   try {
     const query = `
     SELECT

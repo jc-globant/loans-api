@@ -5,7 +5,7 @@ import { validateFields } from '../middlewares/validate-fields.js'
 
 export const paymentRouter = Router()
 
-paymentRouter.get('/payments/', controller.getPayments)
+paymentRouter.get('/payments', controller.getPayments)
 
 paymentRouter.get('/payments/:id', controller.getPayment)
 

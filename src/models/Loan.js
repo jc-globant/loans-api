@@ -1,5 +1,4 @@
 import { DataTypes } from 'sequelize'
-// import { Client } from './Client.js'
 import { db } from '../db/index.js'
 
 export const Loan = db.define('Loan', {

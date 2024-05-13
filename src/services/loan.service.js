@@ -30,10 +30,10 @@ const getLoan = async ({ id }) => {
     const loanDetails = await Loan.findOne({
       where: { id },
       include: [
-        { model: Client, attributes: ['name', 'phone'] }, // Incluye el nombre del cliente
-        { model: Payment, attributes: ['paymentDate', 'amountPaid', 'status'] }, // Incluye los detalles de pago (si existen)
+        { model: Client, attributes: ['name', 'phone'] },
+        { model: Payment, attributes: ['paymentDate', 'amountPaid', 'status'] },
       ],
-      attributes: ['id', 'ClientId', 'amount', 'periodicPayments', 'createdAt'], // Atributos del préstamo
+      attributes: ['id', 'ClientId', 'amount', 'periodicPayments', 'createdAt'],
     })
 
     return loanDetails

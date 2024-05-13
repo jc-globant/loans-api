@@ -5,8 +5,8 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "node --watch src/index.js",
+    "start": "node src/index.js --env-file .env",
+    "dev": "node --watch src/index.js --env-file .env",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
     "lint": "eslint .",
@@ -20,6 +20,8 @@
     "better-sqlite3": "9.6.0",
     "cors": "2.8.5",
     "express": "4.19.2",
+    "express-validator": "7.0.1",
+    "jsonwebtoken": "9.0.2",
     "morgan": "1.10.0",
     "sequelize": "6.37.3",
     "sqlite3": "5.1.7"

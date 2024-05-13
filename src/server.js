@@ -4,7 +4,6 @@ import cors from 'cors';
 import { routes } from './routes/index.js';
 
 export const app = express();
-export const port = process.env.PORT || 3000;
 
 app.use(morgan('tiny'));
 app.use(cors());

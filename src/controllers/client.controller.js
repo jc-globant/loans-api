@@ -1,12 +1,30 @@
 import { request, response } from 'express';
-import { createClient } from '../services/client.service.js';
+import { service } from '../services/client.service.js';
 
 export const controller = {
   async create(req = request, res = response) {
     try {
       const { name, phone } = req.body;
-      console.log(name, phone);
-      const data = await createClient({ name, phone });
+      const data = await service.createClient({ name, phone });
+      res.json(data).status(200);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  },
+  async getClients(_ = request, res = response) {
+    try {
+      const data = await service.getClients();
+      res.json(data).status(200);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  },
+  async getClient(req = request, res = response) {
+    try {
+      const { id } = req.params;
+      const data = await service.getClient({ id });
       res.json(data).status(200);
     } catch (error) {
       console.error(error);

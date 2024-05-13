@@ -14,3 +14,7 @@ clientController.post(
   ],
   controller.create,
 );
+
+clientController.get('/clients', controller.getClients);
+
+clientController.get('/clients/:id', controller.getClient);

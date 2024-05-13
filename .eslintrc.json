@@ -11,6 +11,8 @@
     ],
     "semi": ["error", "never"],
     "object-curly-spacing": ["error", "always"],
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-unused-vars": ["error", { "varsIgnorePattern": "^_$" }]
+
   }
 }

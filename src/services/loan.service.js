@@ -1,7 +1,7 @@
 import { Loan } from '../models/index.js'
 import { db } from '../db/index.js'
 
-export const getLoanById = ({ id }) => {
+const getLoanById = ({ id }) => {
   try {
     const query = `
     SELECT
@@ -34,7 +34,7 @@ export const getLoanById = ({ id }) => {
   }
 }
 
-export const getLoanDetails = async ({ id }) => {
+const getLoanDetails = async ({ id }) => {
   try {
     // Utiliza los modelos y las relaciones para obtener los detalles del préstamo
     const loanDetails = await Loan.findOne({
@@ -55,7 +55,19 @@ export const getLoanDetails = async ({ id }) => {
   }
 }
 
-export default {
+const create = async ({ amount, clientId, periodicPayments }) => {
+  try {
+    const resp = await Loan.create({ amount, clientId, periodicPayments })
+
+    return resp
+  } catch (error) {
+    console.error('error:', error)
+    throw error
+  }
+}
+
+export const service = {
   getLoanById,
   getLoanDetails,
+  create,
 }

@@ -5,7 +5,7 @@ export const controller = {
   async create(req = request, res = response) {
     try {
       const { name, phone } = req.body
-      const data = await service.createClient({ name, phone })
+      const data = await service.create({ name, phone })
       res.json(data).status(200)
     } catch (error) {
       console.error(error)

@@ -6,7 +6,7 @@ const createClient = async ({ name, phone }) => {
 
     return resp
   } catch (error) {
-    console.error('Error al obtener los detalles del préstamo:', error)
+    console.error('error:', error)
     throw error
   }
 }

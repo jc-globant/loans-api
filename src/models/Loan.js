@@ -17,16 +17,23 @@ export const Loan = db.define('Loan', {
       len: [1, 6],
     },
   },
-  loanAmount: {
+  amount: {
     type: DataTypes.REAL,
     allowNull: false,
   },
-  monthlyPayments: {
+  periodicPayments: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  referral: {
-    type: DataTypes.TEXT,
+  clientId: {
+    type: DataTypes.INTEGER,
+
+    allowNull: false,
+    // unique: true,
+    validate: {
+      isNumeric: true,
+      len: [1, 6],
+    },
   },
 })
 

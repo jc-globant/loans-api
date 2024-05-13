@@ -1,5 +1,5 @@
-import { DataTypes } from 'sequelize';
-import { db } from '../db/index.js';
+import { DataTypes } from 'sequelize'
+import { db } from '../db/index.js'
 
 export const Client = db.define('Client', {
   id: {
@@ -7,8 +7,8 @@ export const Client = db.define('Client', {
     primaryKey: true,
     autoIncrement: true,
     get() {
-      const id = this.getDataValue('id');
-      return id != null ? String(id).padStart(6, '0') : null;
+      const id = this.getDataValue('id')
+      return id != null ? String(id).padStart(6, '0') : null
     },
     allowNull: false,
     unique: true,
@@ -24,4 +24,4 @@ export const Client = db.define('Client', {
   phone: {
     type: DataTypes.TEXT,
   },
-});
+})

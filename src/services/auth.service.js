@@ -1,7 +1,7 @@
 export const login = () => {
-  return 'auth service';
-};
+  return 'auth service'
+}
 
 export default {
   login,
-};
+}

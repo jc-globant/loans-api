@@ -1,5 +1,5 @@
-import { Loan } from '../models/index.js';
-import { db } from '../db/index.js';
+import { Loan } from '../models/index.js'
+import { db } from '../db/index.js'
 
 export const getLoanById = ({ id }) => {
   try {
@@ -22,17 +22,17 @@ export const getLoanById = ({ id }) => {
         Payments AS P ON L.id = P.loanId
     WHERE
         L.id = ?;
-`;
+`
 
-    const stmt = db.prepare(query);
-    const result = stmt.get(id);
+    const stmt = db.prepare(query)
+    const result = stmt.get(id)
 
-    return result;
+    return result
   } catch (error) {
-    console.error(error);
-    return {};
+    console.error(error)
+    return {}
   }
-};
+}
 
 export const getLoanDetails = async ({ id }) => {
   try {
@@ -46,16 +46,16 @@ export const getLoanDetails = async ({ id }) => {
       // attributes: [
       //   'id', 'clientId', 'loanAmount', 'monthlyPayments', 'referral'
       // ] // Atributos del préstamo
-    });
+    })
 
-    return loanDetails;
+    return loanDetails
   } catch (error) {
-    console.error('Error al obtener los detalles del préstamo:', error);
-    throw error;
+    console.error('Error al obtener los detalles del préstamo:', error)
+    throw error
   }
-};
+}
 
 export default {
   getLoanById,
   getLoanDetails,
-};
+}

@@ -1,5 +1,5 @@
-import { DataTypes } from 'sequelize';
-import { db } from '../db/index.js';
+import { DataTypes } from 'sequelize'
+import { db } from '../db/index.js'
 
 export const Payment = db.define('Payment', {
   id: {
@@ -7,8 +7,8 @@ export const Payment = db.define('Payment', {
     primaryKey: true,
     autoIncrement: true,
     get() {
-      const id = this.getDataValue('id');
-      return id != null ? String(id).padStart(6, '0') : null;
+      const id = this.getDataValue('id')
+      return id != null ? String(id).padStart(6, '0') : null
     },
     allowNull: false,
     unique: true,
@@ -33,8 +33,8 @@ export const Payment = db.define('Payment', {
   note: {
     type: DataTypes.TEXT,
   },
-});
+})
 
 Payment.associate = models => {
-  Payment.belongsTo(models.Loan, { foreignKey: 'loanId' });
-};
+  Payment.belongsTo(models.Loan, { foreignKey: 'loanId' })
+}

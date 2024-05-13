@@ -1,5 +1,5 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
+import globals from 'globals'
+import pluginJs from '@eslint/js'
 
 // export default [
 //   {
@@ -12,11 +12,29 @@ import pluginJs from '@eslint/js';
 // ];
 
 export default [
+  pluginJs.configs.recommended,
   {
+    languageOptions: { globals: globals.node },
     rules: {
-      'eqeqeq': 'off',
-      'no-unused-vars': ['warn', { varsIgnorePattern: '^_$' }],
-      'prefer-const': ['error', { ignoreReadBeforeAssign: true }],
+      'indent': ['error', 2],
+      'linebreak-style': ['error', 'unix'],
+      'quotes': [
+        'error',
+        'single',
+        {
+          allowTemplateLiterals: true,
+        },
+      ],
+      'semi': ['error', 'never'],
+      'object-curly-spacing': ['error', 'always'],
+      'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
+      'no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
     },
   },
-];
+]

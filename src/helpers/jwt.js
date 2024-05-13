@@ -1,9 +1,9 @@
-import jwt from 'jsonwebtoken';
-import { config } from '../config';
+import jwt from 'jsonwebtoken'
+import { config } from '../config'
 
 export const generateJWT = (uid, name) => {
   return new Promise((resolve, reject) => {
-    const payload = { uid, name };
+    const payload = { uid, name }
     jwt.sign(
       payload,
       config.SECRET_JWT_SEED,
@@ -12,11 +12,11 @@ export const generateJWT = (uid, name) => {
       },
       (err, token) => {
         if (err) {
-          console.log(err);
-          reject('Error on token generation');
+          console.error(err)
+          reject('Error on token generation')
         }
-        resolve(token);
+        resolve(token)
       },
-    );
-  });
-};
+    )
+  })
+}

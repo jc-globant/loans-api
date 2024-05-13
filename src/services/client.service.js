@@ -3,7 +3,7 @@ import { Client } from '../models/index.js';
 export const createClient = async ({ name, phone }) => {
   try {
     console.log(name, phone);
-    const resp = await Client.create({ name: 'jorge', phone: '77717272', id: '10' });
+    const resp = await Client.create({ name: 'jorge', phone: '77717272' });
     console.log(resp);
 
     return resp;

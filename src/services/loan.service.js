@@ -35,7 +35,6 @@ export const getLoanById = ({ id }) => {
 };
 
 export const getLoanDetails = async ({ id }) => {
-  console.log(id);
   try {
     // Utiliza los modelos y las relaciones para obtener los detalles del préstamo
     const loanDetails = await Loan.findOne({

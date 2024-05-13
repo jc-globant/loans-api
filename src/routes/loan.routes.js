@@ -5,6 +5,8 @@ import { validateFields } from '../middlewares/validate-fields.js'
 
 export const loanRouter = Router()
 
+loanRouter.get('/loans/', controller.getLoans)
+
 loanRouter.get('/loans/:id', controller.getLoan)
 
 loanRouter.post(

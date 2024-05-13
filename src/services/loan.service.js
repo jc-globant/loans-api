@@ -1,4 +1,4 @@
-import { Loan, Client } from '../models/index.js'
+import { Loan, Client, Payment } from '../models/index.js'
 
 const create = async ({ amount, ClientId, periodicPayments }) => {
   try {
@@ -30,8 +30,8 @@ const getLoan = async ({ id }) => {
     const loanDetails = await Loan.findOne({
       where: { id },
       include: [
-        { model: Client, attributes: ['name'] }, // Incluye el nombre del cliente
-        // { model: Payment, attributes: ['paymentDate', 'amountPaid', 'status'] } // Incluye los detalles de pago (si existen)
+        { model: Client, attributes: ['name', 'phone'] }, // Incluye el nombre del cliente
+        { model: Payment, attributes: ['paymentDate', 'amountPaid', 'status'] }, // Incluye los detalles de pago (si existen)
       ],
       attributes: ['id', 'ClientId', 'amount', 'periodicPayments', 'createdAt'], // Atributos del préstamo
     })

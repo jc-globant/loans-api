@@ -33,7 +33,7 @@ const getLoan = async ({ id }) => {
         { model: Client, attributes: ['name'] }, // Incluye el nombre del cliente
         // { model: Payment, attributes: ['paymentDate', 'amountPaid', 'status'] } // Incluye los detalles de pago (si existen)
       ],
-      attributes: ['id', 'ClientId', 'amount', 'periodicPayments'], // Atributos del préstamo
+      attributes: ['id', 'ClientId', 'amount', 'periodicPayments', 'createdAt'], // Atributos del préstamo
     })
 
     return loanDetails

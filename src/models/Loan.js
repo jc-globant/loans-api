@@ -1,9 +1,18 @@
 import { DataTypes } from 'sequelize'
+// import { Client } from './Client.js'
 import { db } from '../db/index.js'
-import { id } from '../db/fields/id.js'
 
 export const Loan = db.define('Loan', {
-  id,
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isNumeric: true,
+    },
+  },
   amount: {
     type: DataTypes.REAL,
     allowNull: false,
@@ -12,18 +21,4 @@ export const Loan = db.define('Loan', {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  clientId: {
-    type: DataTypes.INTEGER,
-
-    allowNull: false,
-    // unique: true,
-    validate: {
-      isNumeric: true,
-      len: [1, 6],
-    },
-  },
 })
-
-Loan.associate = models => {
-  Loan.belongsTo(models.Client, { foreignKey: 'clientId' })
-}

@@ -12,7 +12,7 @@ loanRouter.post(
   [
     check('amount', 'Amount is required').notEmpty().isFloat(),
     check('periodicPayments', 'is required').notEmpty().isBoolean(),
-    check('clientId', 'is required').notEmpty().isNumeric(),
+    check('ClientId', 'is required').notEmpty().isNumeric(),
     validateFields,
   ],
   controller.create,

@@ -1,5 +1,21 @@
-import { Loan } from '../models/index.js'
+import { Loan, Client } from '../models/index.js'
 import { db } from '../db/index.js'
+
+const getLoans = () => {
+  return Loan.findAll({
+    where: {
+      ClientId: 1,
+    },
+    include: [{ model: Client }], // Incluye la asociación correctamente
+  })
+    .then(loans => {
+      console.info('Préstamos del cliente:', loans)
+      return loans
+    })
+    .catch(error => {
+      console.error('Error al buscar los préstamos del cliente:', error)
+    })
+}
 
 const getLoanById = ({ id }) => {
   try {
@@ -55,9 +71,13 @@ const getLoanDetails = async ({ id }) => {
   }
 }
 
-const create = async ({ amount, clientId, periodicPayments }) => {
+const create = async ({ amount, ClientId, periodicPayments }) => {
   try {
-    const resp = await Loan.create({ amount, clientId, periodicPayments })
+    const resp = await Loan.create({
+      amount,
+      periodicPayments,
+      ClientId,
+    })
 
     return resp
   } catch (error) {
@@ -70,4 +90,5 @@ export const service = {
   getLoanById,
   getLoanDetails,
   create,
+  getLoans,
 }

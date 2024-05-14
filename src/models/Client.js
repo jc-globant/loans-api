@@ -20,12 +20,4 @@ export const Client = db.define('Client', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
-  reference: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    references: {
-      model: 'Clients',
-      key: 'id',
-    },
-  },
 })

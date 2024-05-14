@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize'
 import { Client, Loan } from '../models/index.js'
 
-const createClient = async ({ name, phone, reference }) => {
+const createClient = async ({ name, phone, referrerId }) => {
   try {
-    const resp = await Client.create({ name, phone, reference })
+    const resp = await Client.create({ name, phone, referrerId })
 
     return resp
   } catch (error) {
@@ -56,9 +56,23 @@ async function getPaginatedClients(page = 1, pageSize = 10) {
 
 const getClient = async ({ id }) => {
   try {
-    const resp = await Client.findOne({ where: { id } })
+    // const resp = await Client.findOne({ where: { id } })
 
-    return resp
+    const clientDetail = await Client.findByPk(id, {
+      include: [
+        {
+          model: Loan,
+          attributes: ['id', 'amount', 'periodicPayments', 'active'], // Incluye solo los atributos necesarios de los préstamos
+        },
+        {
+          model: Client,
+          as: 'Referrer', // Asigna un alias al cliente que lo refirió
+          attributes: ['name', 'phone'], // Incluye solo el nombre y el teléfono del cliente que lo refirió
+        },
+      ],
+    })
+    return clientDetail
+    // return resp
   } catch (error) {
     console.error(error)
     throw error

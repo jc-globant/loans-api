@@ -4,8 +4,7 @@ import { service } from '../services/client.service.js'
 export const controller = {
   async create(req = request, res = response) {
     try {
-      const { name, phone, reference } = req.body
-      const data = await service.create({ name, phone, reference })
+      const data = await service.create({ ...req.body })
       res.json(data).status(200)
     } catch (error) {
       console.error(error)

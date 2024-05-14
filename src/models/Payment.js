@@ -18,6 +18,7 @@ export const Payment = db.define('Payment', {
   },
   actualPaymentDate: {
     type: DataTypes.TEXT,
+    allowNull: true,
   },
   amountPaid: {
     type: DataTypes.REAL,
@@ -27,5 +28,6 @@ export const Payment = db.define('Payment', {
   },
   note: {
     type: DataTypes.TEXT,
+    allowNull: true,
   },
 })

@@ -1,8 +1,8 @@
 import { Client } from '../models/index.js'
 
-const createClient = async ({ name, phone }) => {
+const createClient = async ({ name, phone, reference }) => {
   try {
-    const resp = await Client.create({ name, phone })
+    const resp = await Client.create({ name, phone, reference })
 
     return resp
   } catch (error) {

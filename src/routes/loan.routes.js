@@ -14,6 +14,7 @@ loanRouter.post(
   [
     check('amount', 'Amount is required').notEmpty().isFloat(),
     check('periodicPayments', 'is required').notEmpty().isBoolean(),
+    check('active', 'is required').optional().isBoolean(),
     check('ClientId', 'is required').notEmpty().isNumeric(),
     validateFields,
   ],

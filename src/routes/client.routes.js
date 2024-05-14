@@ -9,8 +9,8 @@ clientController.post(
   '/clients',
   [
     check('name', 'Name is required').notEmpty(),
-    // check('phone', 'Phone not valid').isNumeric().isLength({ min: 7 }),
-    // check('reference', 'reference').isNumeric(),
+    check('phone', 'Phone not valid').optional().isNumeric().isLength({ min: 7 }),
+    check('reference', 'reference').optional().isNumeric(),
     validateFields,
   ],
   controller.create,

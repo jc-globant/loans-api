@@ -1,4 +1,5 @@
-import { Client } from '../models/index.js'
+import Sequelize from 'sequelize'
+import { Client, Loan } from '../models/index.js'
 
 const createClient = async ({ name, phone, reference }) => {
   try {
@@ -13,21 +14,43 @@ const createClient = async ({ name, phone, reference }) => {
 
 async function getPaginatedClients(page = 1, pageSize = 10) {
   const offset = (page - 1) * pageSize
-  const limit = pageSize
 
-  const { count, rows } = await Client.findAndCountAll({
-    offset,
-    limit,
+  const clientsWithActiveLoanCount = await Client.findAndCountAll({
+    attributes: {
+      include: [
+        [
+          Sequelize.fn('COUNT', Sequelize.literal('CASE WHEN Loans.active = true THEN 1 ELSE NULL END')),
+          'activeLoanCount',
+        ],
+      ],
+    },
+    include: [
+      {
+        model: Loan,
+        attributes: [],
+        where: { active: true },
+        required: false,
+      },
+    ],
+    group: ['Client.id'],
+    offset: offset,
   })
 
-  const totalPages = Math.ceil(count / pageSize)
+  const formattedClients = clientsWithActiveLoanCount.rows.map(client => ({
+    id: client.id,
+    name: client.name,
+    phone: client.phone,
+    activeLoanCount: parseInt(client.getDataValue('activeLoanCount') || 0),
+  }))
+
+  const totalPages = Math.ceil(clientsWithActiveLoanCount.count.length / pageSize)
 
   return {
-    totalClients: count,
+    totalClients: clientsWithActiveLoanCount.count.length,
     currentPage: page,
     pageSize: pageSize,
     totalPages: totalPages,
-    clients: rows,
+    clients: formattedClients,
   }
 }
 

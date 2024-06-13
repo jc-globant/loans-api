@@ -40,7 +40,7 @@ async function getPaginatedClients(page = 1, pageSize = 10) {
     id: client.id,
     name: client.name,
     phone: client.phone,
-    activeLoanCount: parseInt(client.getDataValue('activeLoanCount') || 0),
+    activeLoans: parseInt(client.getDataValue('activeLoanCount') || 0),
   }))
 
   const totalPages = Math.ceil(clientsWithActiveLoanCount.count.length / pageSize)
@@ -79,8 +79,45 @@ const getClient = async ({ id }) => {
   }
 }
 
+const updateClient = async ({ id, name, phone, referrerId }) => {
+  try {
+    const updatedFields = {}
+    if (name) updatedFields.name = name
+    if (phone) updatedFields.phone = phone
+    if (referrerId) updatedFields.referrerId = referrerId
+
+    const [rowsUpdated] = await Client.update(updatedFields, {
+      where: { id },
+    })
+
+    if (rowsUpdated === 0) {
+      throw new Error('Client not found or no changes made')
+    }
+
+    const updatedClient = await Client.findByPk(id, {
+      include: [
+        {
+          model: Loan,
+          attributes: ['id', 'amount', 'periodicPayments', 'active'],
+        },
+        {
+          model: Client,
+          as: 'Referrer',
+          attributes: ['name', 'phone'],
+        },
+      ],
+    })
+
+    return updatedClient
+  } catch (error) {
+    console.error('Error updating client:', error)
+    throw error
+  }
+}
+
 export const service = {
   create: createClient,
   getClient,
   getClients: getPaginatedClients,
+  update: updateClient,
 }

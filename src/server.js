@@ -17,7 +17,7 @@ server.use(express.json())
 server.use(routes)
 
 server.get('/hello', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hola mundo jaja ')
 })
 
 server.use('/', express.static(path.join(__dirname, 'public')))
